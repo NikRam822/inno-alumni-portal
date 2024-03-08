@@ -1,0 +1,467 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>inno-alumni-portal</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Intoduction to inno-alumni-portal</a></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">2.</strong> User guide</a></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">3.</strong> Developer guide</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">inno-alumni-portal</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction-to-inno-alumni-portal"><a class="header" href="#introduction-to-inno-alumni-portal">Introduction to inno-alumni-portal</a></h1>
+<p>Welcome to the documentation for the <strong>inno-alumni-portal</strong>, a comprehensive platform tailored to serve the needs of Innopolis University Alumni. This document provides an overview of the key features, functionalities, and objectives of the system.</p>
+<h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
+<ol>
+<li><a href="chapter_1.html#introduction">Introduction</a></li>
+<li><a href="chapter_1.html#project-description">Project Description</a></li>
+<li><a href="chapter_1.html#project-iu-alumni-overview">Project "IU Alumni" Overview</a></li>
+<li><a href="chapter_1.html#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="project-description"><a class="header" href="#project-description">Project Description</a></h2>
+<p>The inno-alumni-portal serves as a dedicated website aimed at facilitating various services for the alumni community of Innopolis University. It offers alumni the opportunity to stay updated with university events, register for elective courses, manage attendance, and request passes for accessing university facilities.</p>
+<ul>
+<li><strong>Customer Complaints</strong></li>
+</ul>
+<p>One of the notable features of the system is its seamless integration for customer feedback and complaint submission. Users can directly submit their complaints through the designated Telegram group mentioned on the website.</p>
+<ul>
+<li><strong>Users Data Management</strong></li>
+</ul>
+<p>Administrators have the authority to manage user data effectively. They can review and process requests from users, providing feedback or taking necessary actions such as acceptance or denial based on specific reasons.</p>
+<ul>
+<li><strong>Pass Order</strong></li>
+</ul>
+<p>Alumni users have the convenience of requesting passes to access university facilities for various purposes directly from the main page of the website. This streamlined process enhances accessibility and convenience for the alumni community.</p>
+<ul>
+<li><strong>Elective Courses Participation Requests</strong></li>
+</ul>
+<p>Another significant aspect of the inno-alumni-portal is its functionality allowing alumni users to request participation in elective courses offered by the university. Through this feature, alumni can express their interest and attend courses relevant to their preferences and schedules.</p>
+<h2 id="project-iu-alumni-overview"><a class="header" href="#project-iu-alumni-overview">Project "IU Alumni" Overview</a></h2>
+<p>The <strong>IU Alumni</strong> project encompasses a wide range of functionalities geared towards managing university events, facilitating elective course registration, tracking attendance, and processing pass requests for accessing university premises. It is designed to cater to the diverse needs and preferences of the university alumni community.</p>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>In summary, the inno-alumni-portal serves as a centralized platform aimed at enhancing the alumni experience at Innopolis University. With its array of features and user-friendly interface, it strives to foster engagement, facilitate communication, and streamline processes for the benefit of all alumni stakeholders.</p>
+<p>This documentation aims to provide comprehensive insights into the functionality and objectives of the inno-alumni-portal, empowering users to leverage its capabilities effectively.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="user-guide-for-inno-alumni-portal"><a class="header" href="#user-guide-for-inno-alumni-portal">User Guide for inno-alumni-portal</a></h1>
+<p>Welcome to the User Guide for the <strong>inno-alumni-portal</strong>. This guide provides comprehensive instructions and information on how users can effectively utilize the features and functionalities of the system.</p>
+<h2 id="table-of-contents-1"><a class="header" href="#table-of-contents-1">Table of Contents</a></h2>
+<ol>
+<li><a href="chapter_2.html#introduction">Introduction</a></li>
+<li><a href="chapter_2.html#getting-started">Getting Started</a></li>
+<li><a href="chapter_2.html#for-users">For Users</a>
+<ul>
+<li><a href="chapter_2.html#section-overview">Section Overview</a>
+<ul>
+<li><a href="chapter_2.html#users-login-page">Users login page</a></li>
+<li><a href="chapter_2.html#overview">Overview</a></li>
+<li><a href="chapter_2.html#request-pass">Request Pass</a></li>
+<li><a href="chapter_2.html#request-electives">Request Electives</a></li>
+<li><a href="chapter_2.html#make-donations">Make Donations</a></li>
+<li><a href="chapter_2.html#account">Account</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="chapter_2.html#for-administrators">For Administrators</a>
+<ul>
+<li><a href="chapter_2.html#section-overview-1">Section Overview</a>
+<ul>
+<li><a href="chapter_2.html#admins-login-page">Admins login page</a></li>
+<li><a href="chapter_2.html#overview-1">Overview</a></li>
+<li><a href="chapter_2.html#pass-requests">Pass Requests</a></li>
+<li><a href="chapter_2.html#manage-elective-courses">Manage Elective Courses</a></li>
+<li><a href="chapter_2.html#manage-donation">Manage Donation</a></li>
+<li><a href="chapter_2.html#account-1">Account</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>Welcome to the User Guide for the inno-alumni-portal! Whether you're an alumni member eager to engage with your alma mater or an administrator tasked with managing the system, this guide is designed to help you navigate through the functionalities and features of the platform effectively.</p>
+<h2 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h2>
+<p>Whether you're a user or an administrator, this User Guide aims to empower you with the knowledge and resources needed to make the most out of the inno-alumni-portal. Let's embark on this journey together and explore the exciting possibilities that await within the vibrant community of Innopolis University Alumni!</p>
+<h2 id="for-users"><a class="header" href="#for-users">For users</a></h2>
+<p>As a user of the inno-alumni-portal, you have access to a range of features tailored to enhance your experience and connectivity with Innopolis University. From registering for elective courses to staying updated with university events, managing attendance, and submitting feedback, this guide will walk you through the process step-by-step.</p>
+<h3 id="section-overview"><a class="header" href="#section-overview">Section overview</a></h3>
+<p>The system has pages such as:</p>
+<ul>
+<li><a href="chapter_2.html#users-login-page">Users login page</a></li>
+<li><a href="chapter_2.html#overview">Overview</a></li>
+<li><a href="chapter_2.html#request-pass">Request Pass</a></li>
+<li><a href="chapter_2.html#request-electives">Request Electives</a></li>
+<li><a href="chapter_2.html#make-donations">Make Donations</a></li>
+<li><a href="chapter_2.html#account">Account</a></li>
+</ul>
+<p>Detailed information on each section is provided below.</p>
+<h4 id="users-login-page"><a class="header" href="#users-login-page">Users login page</a></h4>
+<p>Authorisation and Authentication page.
+For authentication and authorisation, you can use several options:</p>
+<ul>
+<li>Register.</li>
+<li>Sign in if you already have an account.</li>
+<li>Sign in using the Innopolis University authentication system if you have a corporate account.</li>
+</ul>
+<p><img src="./media/Users/login-page.png" alt="Login page" /></p>
+<h4 id="overview"><a class="header" href="#overview">Overview</a></h4>
+<p>After successfully logging in to your account, you will be taken to the Overview section. In this section on the left side there is a menu to navigate between the sections. Also on this page are brief descriptions of the sections.</p>
+<p><img src="./media/Users/main-page.png" alt="Overview" /></p>
+<h4 id="request-pass"><a class="header" href="#request-pass">Request Pass</a></h4>
+<p>This page is designed to generate and send enquiries. You can fill in the necessary forms and send a request if you have a need. In the right part of the page there is background information on popular issues.</p>
+<p><img src="./media/Users/request-page1.png" alt="Overview" /></p>
+<p>Once you have completed the form, your enquiry will appear in the History section. Here you can track the status of your enquiry and find out more details.</p>
+<p><img src="./media/Users/request-page2.png" alt="Overview" /></p>
+<p>For even more detailed information you can click on an enquiry and see an enquiry card with detailed information about the enquiry.</p>
+<p><img src="./media/Users/request-page3.png" alt="Overview" /></p>
+<h4 id="request-electives"><a class="header" href="#request-electives">Request Electives</a></h4>
+<p>This page is designed to generate and send requests for elective courses. You can select the available electives and submit a course request.</p>
+<p><img src="./media/Users/Request-electives.png" alt="Overview" /></p>
+<p><img src="./media/Users/request-electives2.png" alt="Overview" /></p>
+<p>You can also track the history of requests at the bottom of the section and track the status of requests. Also, if you click on a request, you can read detailed information.</p>
+<p><img src="./media/Users/request-electives3.png" alt="Overview" /></p>
+<h4 id="make-donations"><a class="header" href="#make-donations">Make Donations</a></h4>
+<p>This section provides information about the possibility of donations. The main part of the section provides detailed information and motivation for action.</p>
+<p><img src="./media/Users/make-donations.png" alt="Overview" /></p>
+<p>At the bottom of the section are the necessary details and donation forms.</p>
+<p><img src="./media/Users/make-donations2.png" alt="Overview" /></p>
+<h4 id="account"><a class="header" href="#account">Account</a></h4>
+<p>This section provides detailed information about the account you are using. You can also update the account data here.</p>
+<p><img src="./media/Users/Account.png" alt="Overview" /></p>
+<h2 id="for-administrators"><a class="header" href="#for-administrators">For administrators</a></h2>
+<p>As an administrator responsible for overseeing the operations and functionalities of the inno-alumni-portal, this guide provides valuable insights into managing user data, processing pass requests, overseeing elective course registrations, and addressing user feedback. You'll find detailed instructions and best practices to streamline administrative tasks and ensure a seamless experience for all users.</p>
+<h3 id="section-overview-1"><a class="header" href="#section-overview-1">Section overview</a></h3>
+<p>The system has pages such as:</p>
+<ul>
+<li><a href="chapter_2.html#admins-login-page">Admins login page</a></li>
+<li><a href="chapter_2.html#overview-1">Overview</a></li>
+<li><a href="chapter_2.html#pass-requests">Pass Requests</a></li>
+<li><a href="chapter_2.html#manage-elective-courses">Manage Elective Courses</a></li>
+<li><a href="chapter_2.html#manage-donation">Manage Donation</a></li>
+<li><a href="chapter_2.html#account-1">Account</a></li>
+</ul>
+<p>Detailed information on each section is provided below.</p>
+<h4 id="admins-login-page"><a class="header" href="#admins-login-page">Admins login page</a></h4>
+<p>System login page. You need to have an admin account to log in to authenticate and authorise.</p>
+<p><img src="./media/Managers/1login.png" alt="Overview" /></p>
+<h4 id="overview-1"><a class="header" href="#overview-1">Overview</a></h4>
+<p>After authentication and authorisation, you are taken to the main page. Here you can see the data of the last logged in users.</p>
+<p><img src="./media/Managers/2-main.png" alt="Overview" /></p>
+<h4 id="pass-requests"><a class="header" href="#pass-requests">Pass Requests</a></h4>
+<p>This page contains requests from users. Here you can see the dates and statuses of the requests.</p>
+<p><img src="./media/Managers/4-pass-request.png" alt="Overview" /></p>
+<p>You can click on the required enquiry for more information and to complete the enquiry response form.</p>
+<p><img src="./media/Managers/3pass-request1.png" alt="Overview" /></p>
+<h4 id="manage-elective-courses"><a class="header" href="#manage-elective-courses">Manage Elective Courses</a></h4>
+<p>This section is similar to the previous one, but belongs to the elective courses section. Here you can familiarise yourself with user requests.</p>
+<p><img src="./media/Managers/6manage-electives.png" alt="Overview" /></p>
+<p>To respond to a request, you need to fill in the response form, which can be opened by clicking on the request.</p>
+<p><img src="./media/Managers/5-ellective-request.png" alt="Overview" /></p>
+<h4 id="manage-donation"><a class="header" href="#manage-donation">Manage Donation</a></h4>
+<p>In this section we can update the information about donations, as well as review the donations that have come in.</p>
+<p><img src="./media/Managers/9don.png" alt="Overview" /></p>
+<p>By clicking on a specific donation, we can get more detailed information about the selected donation.</p>
+<p><img src="./media/Managers/10don.png" alt="Overview" /></p>
+<h4 id="account-1"><a class="header" href="#account-1">Account</a></h4>
+<p>This section provides information about the users of the system. You can also add new users with the required access by clicking the add button in the upper right corner of the screen.</p>
+<p><img src="./media/Managers/8Account.png" alt="Overview" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="developer-guide-for-inno-alumni-portal"><a class="header" href="#developer-guide-for-inno-alumni-portal">Developer Guide for inno-alumni-portal</a></h1>
+<h2 id="table-of-contents-2"><a class="header" href="#table-of-contents-2">Table of Contents</a></h2>
+<ol>
+<li><a href="chapter_3.html#frameworks-and-technology">Frameworks and Technology</a></li>
+<li><a href="chapter_3.html#how-to-run">How to Run</a>
+<ul>
+<li><a href="chapter_3.html#alumni-portal-backend">Alumni Portal Backend</a>
+<ul>
+<li><a href="chapter_3.html#using-python">Using Python</a></li>
+<li><a href="chapter_3.html#using-docker">Using Docker</a></li>
+</ul>
+</li>
+<li><a href="chapter_3.html#inno-alumni-portal-frontend">Inno-alumni-portal Frontend</a></li>
+</ul>
+</li>
+<li><a href="chapter_3.html#technology-details">Technology Details</a></li>
+<li><a href="chapter_3.html#additional-information">Additional Information</a></li>
+</ol>
+<h2 id="frameworks-and-technology"><a class="header" href="#frameworks-and-technology">Frameworks and Technology</a></h2>
+<ul>
+<li>Python FastAPI</li>
+<li>Next.js</li>
+<li>Docker</li>
+<li>PostgreSQL</li>
+</ul>
+<h2 id="how-to-run"><a class="header" href="#how-to-run">How to Run</a></h2>
+<p>Instructions for running the project can be found in the README files located in the frontend and backend folders.</p>
+<h2 id="alumni-portal-backend"><a class="header" href="#alumni-portal-backend">Alumni Portal Backend</a></h2>
+<h3 id="how-to-run-1"><a class="header" href="#how-to-run-1">How to Run</a></h3>
+<h4 id="using-python"><a class="header" href="#using-python">Using Python</a></h4>
+<ol>
+<li>Open a shell/command line in the backend folder (preferably after activating a Python virtual environment).</li>
+<li>Install the required Python packages:</li>
+</ol>
+<p><code>pip install -r requirements.txt</code></p>
+<ol start="3">
+<li>Run the Python script:</li>
+</ol>
+<p><code>python3 main.py</code></p>
+<h4 id="using-docker"><a class="header" href="#using-docker">Using Docker</a></h4>
+<p>Here, the image tag name is alumni-backend; you can name it as you like. Also, the default port in Docker is 8000, and locally, you can map it to any port as you like.</p>
+<ul>
+<li>Build the Docker image:</li>
+</ul>
+<p><code>docker build -t alumni-backend</code></p>
+<ul>
+<li>Run the Docker container, mapping port 8000 to the desired port:</li>
+</ul>
+<p><code>docker run -p 8000:8000 -d alumni-backend</code></p>
+<h2 id="inno-alumni-portal-frontend"><a class="header" href="#inno-alumni-portal-frontend">Inno-alumni-portal Frontend</a></h2>
+<h3 id="how-to-run-locally"><a class="header" href="#how-to-run-locally">How to Run Locally</a></h3>
+<ol>
+<li>Open a shell/command line in the frontend folder.</li>
+<li>Install all required packages using npm:</li>
+</ol>
+<p><code>npm install</code></p>
+<ol start="3">
+<li>To build the project for production:</li>
+</ol>
+<p><code>npm run build</code></p>
+<ol start="4">
+<li>To start the project in development mode:</li>
+</ol>
+<p><code>npm start</code></p>
+<h2 id="technology-details"><a class="header" href="#technology-details">Technology Details</a></h2>
+<ul>
+<li><strong>Python FastAPI</strong>: FastAPI is a modern, fast (high-performance), web framework for building APIs with Python.</li>
+<li><strong>Next.js</strong>: Next.js is a React framework that enables functionality like server-side rendering and generating static websites for React-based web applications.</li>
+<li><strong>Docker</strong>: Docker is a platform for developing, shipping, and running applications in containers.</li>
+<li><strong>PostgreSQL</strong>: PostgreSQL is an open-source relational database management system known for its reliability and robustness.</li>
+</ul>
+<h2 id="additional-information"><a class="header" href="#additional-information">Additional Information</a></h2>
+<ul>
+<li>The backend (located in the 'app' folder) is developed using Python.</li>
+<li>The frontend (located in the 'src' folder) is developed using Next.js, JavaScript, HTML, and CSS.</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

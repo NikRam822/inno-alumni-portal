@@ -72,4 +72,9 @@ docker run -p 8000:8000 -d alumni-backend
     ```bash
     npm start
     ```
+# Docs
+
+The documentation can be found here: https://nikram822.github.io/inno-alumni-portal/
+
+Authors of documentation: Ramzin Nikita, enghamzasalem, muwaffaqimam. 
     
